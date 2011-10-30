@@ -19,10 +19,18 @@ module SessionsHelper
     @current_user ||= user_from_remember_token
   end
 
+  def current_users?(user)
+    user == current_user
+  end
+
+  def deny_access
+    redirect_to signin_path, :notice => "Please sign in to access this page."
+  end
+
   private
 
     def user_from_remember_token
-      User.authenticate_with_salt(*remember_token)
+      User.authenticate_with_salt(*remember_token) # 用#干吗
     end
 
     def remember_token
