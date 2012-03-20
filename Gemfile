@@ -1,13 +1,15 @@
-source 'http://rubygems.org'
+source 'http://ruby.taobao.org'
 
 gem 'rails', '3.0.1'
 gem 'sqlite3-ruby', :require => 'sqlite3'
 gem 'gravatar_image_tag', '0.1.0'
-gem "rake", "0.8.7" #后加的内容
+#gem "rake", "0.8.7"
+gem 'rake', '0.9.2.2'
 
 group :development do
   gem 'rspec-rails', '2.6.0'
   gem 'annotate', '2.4.0'
+  gem 'faker', '0.3.1'
 end
 
 group :test do
