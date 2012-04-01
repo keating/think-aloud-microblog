@@ -1,4 +1,5 @@
 require 'spec_helper'
+require "will_paginate"
 
 describe UsersController do
   render_views
@@ -297,10 +298,32 @@ describe UsersController do
         get :index
         response.should have_selector("div.pagination")
         response.should have_selector("span.disabled", :content => "Previous")
-        response.should have_selector("a", :href => "users?page=2",
+        response.should have_selector("a", :href => "/users?page=2",
                                       :content => "2")
-        response.should have_selector("a", :href => "users?page=2",
+        response.should have_selector("a", :href => "/users?page=2",
                                       :content => "Next")
+      end
+
+      #普通登录用户访问用户列表首页，不能看到删除用户链接
+      describe "as a non-admin user" do
+        it "should not exist delete links" do
+          get :index
+          response.should_not have_selector("a", "data-method" => "delete", :content => "delete")
+        end
+      end
+
+      #管理员登录
+      describe "as a admin user" do
+
+        before(:each) do
+          admin = Factory(:user, :email => "admin@example.com", :admin => true)
+          test_sign_in admin
+        end
+
+        it "should exist delete links" do
+          get :index
+          response.should have_selector("a", "data-method" => "delete", :content => "delete")
+        end
       end
     end
   end
@@ -330,22 +353,31 @@ describe UsersController do
     describe "as an admin user" do
 
       before(:each) do
-        admin = Factory(:user, :email => "admin@example.com", :admin => true)
+        @admin = Factory(:user, :email => "admin@example.com", :admin => true)
+        test_sign_in(@admin)
       end
 
       it "should destroy the user" do
         lambda do
           delete :destroy, :id => @user
-        end.should change(:user, :count).by(-1)
+        end.should change(User, :count).by(-1)
       end
 
       it "should redirect to the users page" do
         delete :destroy, :id => @user
-        response.should redirect_to(uses_path)
+        response.should redirect_to(users_path)
+      end
+
+      it "should not delete the admin itself" do
+        lambda do
+          delete :destroy, :id => @admin
+        end.should_not change(User, :count)
+      end
+
+      it "should redirect to users path" do
+        delete :destroy, :id => @admin
+        response.should redirect_to(users_path)
       end
     end
   end
-
-
-
 end
