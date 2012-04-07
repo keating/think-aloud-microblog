@@ -1,21 +1,21 @@
-<tr>
-  <td class="gravatar">
+<li style="border-top: 1px solid #e0e0e0">
+  <div class="gravatar" style="display: inline-block;width: 60px;min-height: 60px;">
     <%= link_to gravatar_for(feed_item.user), feed_item.user %>
-  </td>
-  <td class="micropost">
-    <span class="user">
+  </div>
+  <div class="micropost" style="position:relative;display: inline-block;width: 375px;min-height: 60px;vertical-align: top;padding-top: 3px;padding-bottom: 3px;">
+    <div class="user" style="display:inline-block;text-align: left">
       <%= link_to feed_item.user.name, feed_item.user %>
-    </span>
-    <span class="content"><%= feed_item.content %></span>
-    <span class="timestamp">
-      Posted <%= time_ago_in_words(feed_item.created_at) %> ago.
-    </span>
-  </td>
-  <% if current_users?(feed_item.user) %>
-      <td>
-        <%= link_to "delete", feed_item, :method => :delete,
-                    :confirm => "You sure?",
-                    :title => feed_item.content %>
-      </td>
-  <% end %>
-</tr>
+      <span class="timestamp">
+        Posted <%= time_ago_in_words(feed_item.created_at) %> Ago.
+      </span>
+    </div>
+    <div style="position:absolute;top:3px;right:3px;display:inline-block;text-align: right;">
+      <% if current_users?(feed_item.user) %>
+          <%= link_to "delete", feed_item, :method => :delete,
+                      :confirm => "You sure?",
+                      :title => feed_item.content %>
+      <% end %>
+    </div>
+    <div class="content"><%= feed_item.content %></div>
+  </div>
+</li>

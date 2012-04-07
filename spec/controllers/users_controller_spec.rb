@@ -77,6 +77,20 @@ describe UsersController do
       response.should have_selector("span.content", :content => mp1.content)
       response.should have_selector("span.content", :content => mp2.content)
     end
+
+    it "should have delete links" do
+      test_sign_in @user
+      mp1 = Factory(:micropost, :user => @user, :content => "Foo bar")
+      get :show, :id => @user
+      response.should have_selector("a", "data-method" => "delete", :content => "delete")
+    end
+
+    it "should not have delete links" do
+      test_sign_in Factory(:user, :email => Factory.next(:email))
+      mp1 = Factory(:micropost, :user => @user, :content => "Foo bar")
+      get :show, :id => @user
+      response.should_not have_selector("a", "data-method" => "delete", :content => "delete")
+    end
   end
 
   # post create

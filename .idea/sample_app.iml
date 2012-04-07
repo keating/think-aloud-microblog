@@ -34,6 +34,7 @@
     <orderEntry type="library" scope="PROVIDED" name="faker (v0.3.1, RVM: ruby-1.9.2-p290 [rails3.0]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="gravatar_image_tag (v0.1.0, RVM: ruby-1.9.2-p290 [rails3.0]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="i18n (v0.4.2, RVM: ruby-1.9.2-p290 [rails3.0]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="jquery-rails (v1.0.18, RVM: ruby-1.9.2-p290 [rails3.0]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="mail (v2.2.19, RVM: ruby-1.9.2-p290 [rails3.0]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="mime-types (v1.18, RVM: ruby-1.9.2-p290 [rails3.0]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="nokogiri (v1.5.2, RVM: ruby-1.9.2-p290 [rails3.0]) [gem]" level="application" />

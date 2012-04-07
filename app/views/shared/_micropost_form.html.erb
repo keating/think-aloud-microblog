@@ -1,9 +1,11 @@
+<%= javascript_include_tag 'micropost_form' %>
+
 <%= form_for @micropost do |f| %>
     <%= render 'shared/error_messages', :object => f.object %>
     <div class="field">
-      <%= f.text_area :content %>
+      <%= f.text_area :content %> <%# :style => "width:420px;" %>
     </div>
     <div class="actions">
-      <%= f.submit "Submit" %>
+      <button onclick="new_post_validate()" type="button">Submit</button>
     </div>
 <% end %>

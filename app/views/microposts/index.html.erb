@@ -1,0 +1,15 @@
+<% unless @user.nil? %>
+    <h1>
+      <span style="padding-left: 15px;"><%= @user.name %>'s microposts</span>
+    </h1>
+    <table class="profile" summary="Profile information">
+      <tr>
+        <td class="main">
+          <table class="microposts" summary="User microposts">
+            <%= render @microposts %>
+          </table>
+          <%= will_paginate @microposts %>
+        </td>
+      </tr>
+    </table>
+<% end %>
