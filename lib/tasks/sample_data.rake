@@ -1,7 +1,6 @@
 namespace :db do
   desc "Fill database with sample data"
   task :populate => :environment do
-    require 'faker'
     Rake::Task['db:reset'].invoke
     make_users
     make_microposts
@@ -10,10 +9,10 @@ namespace :db do
 end
 
 def make_users
-  admin = User.create(:name => "amdin",
-                      :email => 'wangjiwen10@gmail.org',
-                      :password => "123456",
-                      :password_confirmation => "123456")
+  admin = User.create(:name => "Example User",
+                      :email => 'example@railstutorial.org',
+                      :password => "foobar",
+                      :password_confirmation => "foobar")
   admin.toggle!(:admin)
   99.times do |n|
     name = Faker::Name.name
@@ -24,11 +23,6 @@ def make_users
                  :password => password,
                  :password_confirmation => password)
   end
-  # for heroku
-  User.create(:name => "Andy Effort",
-              :email => 'outofclouds@gmail.org',
-              :password => "123456",
-              :password_confirmation => "123456")
 end
 
 def make_microposts
