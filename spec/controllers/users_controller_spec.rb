@@ -74,8 +74,8 @@ describe UsersController do
       mp1 = Factory(:micropost, :user => @user, :content => "Foo bar")
       mp2 = Factory(:micropost, :user => @user, :content => "Baz quux")
       get :show, :id => @user
-      response.should have_selector("span.content", :content => mp1.content)
-      response.should have_selector("span.content", :content => mp2.content)
+      response.should have_selector("div.content", :content => mp1.content)
+      response.should have_selector("div.content", :content => mp2.content)
     end
 
     it "should have delete links" do
@@ -295,7 +295,7 @@ describe UsersController do
         @users = [@user, second, third]
         30.times do
           @users << Factory(:user, :name => Factory.next(:name),
-                                   :email => Factory.next(:email))
+                            :email => Factory.next(:email))
         end
       end
 
@@ -430,14 +430,31 @@ describe UsersController do
       it "should show user following" do
         get :following, :id => @user
         response.should have_selector('a', :href => user_path(@other_user),
-                       :content => @other_user.name)
+                                      :content => @other_user.name)
       end
 
       it "should show user followers" do
         get :followers, :id => @other_user
         response.should have_selector('a', :href => user_path(@user),
-                        :content => @user.name)
+                                      :content => @user.name)
       end
+    end
+  end
+
+  # get 'show' for status
+  describe "get 'show' for status" do
+
+    before(:each) do
+      @user = Factory(:user, :name => "andy")
+      test_sign_in(@user)
+      13.times { Factory(:micropost, :user => @user) }
+    end
+
+    it "should have name on the status page" do
+      get 'show', :id => @user
+      response.should have_selector("strong", :content => "Name")
+      response.should have_selector("a", :href => user_path(@user), :content => user_path(@user));
+      response.should have_selector("label", :content => "13")
     end
   end
 end

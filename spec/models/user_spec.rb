@@ -277,6 +277,22 @@ describe User do
       @user.follow!(@followed)
       @followed.followers.should include(@user)
     end
+
+    describe "destroy dependent" do
+
+      before(:each) do
+        @followed.follow!(@user)
+        @relationships = @followed.relationships
+      end
+
+      it "should destroy the relationships" do
+        @relationships.size.should == 1
+        @user.destroy
+        @relationships.each do |relationship|
+          Relationship.find_by_id(relationship.id).should be_nil
+        end
+      end
+    end
   end
 
 

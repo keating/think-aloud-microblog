@@ -1,0 +1,6 @@
+<% unless microposts.empty? %>
+    <ol class="microposts" summary="User microposts" style="margin: 0;padding: 0;list-style-type: none;">
+      <%= render :partial => "microposts/micropost", :locals => {:microposts => microposts, :view_gravatar => view_gravatar} %>
+    </ol>
+    <%= will_paginate microposts %>
+<% end %>
