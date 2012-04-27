@@ -1,4 +1,5 @@
-<footer>
+<footer style="height:100px;">
+  <div style="width: 100%;margin:0 auto;height:5px;border-top: 2px solid #c0c0c0;"></div>
   <nav class="round">
     <ul>
       <li><%= link_to "About", about_path %></li>
@@ -8,3 +9,15 @@
     </ul>
   </nav>
 </footer>
+<div id="welcome" style="width: 300px;height: 25px;background-color: #101010;position: fixed;bottom:0;right: 200px;" class="opacity round_little">
+  <label style="font-size: 1.4em;color: #ffffff;padding-left: 10px;">Welcome here !</label>
+  <a href="#" onclick="close_welcome();return false" style="display: block;float: right;padding: 4px;"><%= image_tag "close.gif" %></a>
+</div>
+<script type="text/javascript">
+  setTimeout(function(){
+    close_welcome();
+  }, 1000)
+  function close_welcome() {
+      $("#welcome").hide();
+  }
+</script>
