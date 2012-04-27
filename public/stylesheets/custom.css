@@ -5,7 +5,8 @@
 }
 
 body {
-    background: #f0f0f0;
+    /*background: #f0f0f0;*/
+    background: #eee url("/images/bodybg.jpg") bottom left repeat;
 }
 
 section {
