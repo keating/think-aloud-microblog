@@ -1,13 +1,13 @@
 <table class="front" summary="For signed-in users">
   <tr>
     <td class="main">
-      <h1 class="micropost">What's up?</h1>
+      <h1 class="micropost">Less is more, simple is beautiful</h1>
       <%= render 'shared/micropost_form' %>
-      <%= render :partial => "microposts/microposts", :locals => {:microposts => @feed_items, :view_gravatar => true} %>
+      <%= render :partial => "microposts/microposts", :locals => {:microposts => @feed_items, :view_gravatar => false} %>
     </td>
     <td class="sidebar">
       <%= render 'shared/user_info' %>
-      <%= render 'shared/stats' %>
+      <%#= render 'shared/stats' %>
     </td>
   </tr>
 </table>
