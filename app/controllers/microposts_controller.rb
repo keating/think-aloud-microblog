@@ -9,10 +9,15 @@ class MicropostsController < ApplicationController
   end
 
   def create
+    puts "=================#{request.url} #{request.url.ends_with?("hello_world")}"
     @micropost = current_user.microposts.build(params[:micropost])
     if @micropost.save
       flash[:success] = "Micropost created!"
-      redirect_to root_path
+      if params[:hello_world_page]
+        redirect_to "/hello_world"
+      else
+        redirect_to root_path
+      end
     else
       @feed_items = []
       render 'pages/home'

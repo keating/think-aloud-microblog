@@ -7,9 +7,9 @@
       <% end %>
       <div class="micropost" style="position:relative;display: inline-block;width: <%= (view_gravatar)?375:435 %>px;min-height: 60px;vertical-align: top;padding-top: 3px;padding-bottom: 3px;">
         <div class="user" style="display:inline-block;text-align: left">
-          <%= link_to ("some rubyist" or micropost.user.name), micropost.user %>
+          <%= link_to micropost.user.name, micropost.user %>
           <span class="timestamp">
-        Posted <%= time_ago_in_words(1.year.ago micropost.created_at) %> Ago.
+        Posted <%= time_ago_in_words micropost.created_at %> Ago.
       </span>
         </div>
         <div style="position:absolute;top:3px;right:3px;display:inline-block;text-align: right;">
