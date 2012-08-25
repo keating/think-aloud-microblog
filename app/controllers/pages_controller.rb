@@ -3,7 +3,7 @@ class PagesController < ApplicationController
   layout :resolve_layout
 
   def home
-    @title = "Home Really"
+    @title = "Home"
     if signed_in?
       @micropost = Micropost.new
       @feed_items = current_user.feed.paginate(:page => params[:page])
